@@ -7,7 +7,7 @@ Here I plan to put source code that solves puzzles I happen to come across.
 Arla sells milk, cheese and other dairy products. Sometimes they put puzzles on the back of milk packets. Like [this one](https://www.arla.se/49f09c/globalassets/aktuellt/mjolkbaksidor/2018/april/matte-hacker-april-2018-arlakadabra.pdf).
 ![milk puzzle](arla.jpg)
 
-Note. The steghide pwd for the image above is *arlakadabra*.
+Note. The steghide pw for the image above is *arlakadabra*.
 
 Goal: Figure out the 3-digit code.
 
@@ -70,7 +70,7 @@ def one_right_rightplace(a, b, c):
         And(k1 != a, k1 != b, k1 != c, k2 == b, k3 != a, k3 != b, k3 != c),
         And(k1 != a, k1 != b, k1 != c, k2 != a, k2 != b, k2 != c, k3 == c)))
 ```
-Her the s.add() starts with an Or(). That means at least one of the constraints
+Here the s.add() starts with an Or(). That means at least one of the constraints
 inside the Or() statement must be true (satisfied). I added logic so that only
 one of the And lines can be true at the same time. The first line says k1 is
 a (the first number) while k2, k3 are neither of the three given numbers.
@@ -84,10 +84,10 @@ s.check()
 If it returns *unsat* it means no solution was found. But if it returns
 *sat* then a solution is available in s.model().
 
-Note, several solutions might exist. check() only returns the first model
+Note, several solutions might exist. *s.check()* only returns the first model
 it can find that satisfies all added constraints. To get more solutions, try
-s.check() in a loop and add constraints to make the found models invalid (after
-they have been printed).
+*s.check()* in a loop and after printing one solution, add a constraint to make
+that solution impossible, so that s.check() will choose another solution next.
 
 You can find the correct code by installing Z3 and running milksolver.py, by
 calculating it in your head or by extracting the hidden data from arla.jpg (above).
