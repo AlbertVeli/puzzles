@@ -6,6 +6,7 @@ Here I plan to put source code that solves puzzles I happen to come across.
 
 Arla sells milk, cheese and other dairy products. Sometimes they put puzzles on the back of milk packets. Like [this one](https://www.arla.se/49f09c/globalassets/aktuellt/mjolkbaksidor/2018/april/matte-hacker-april-2018-arlakadabra.pdf).
 ![milk puzzle](arla.jpg)
+
 Note. The steghide pwd for the image above is *arlakadabra*.
 
 Goal: Figure out the 3-digit code.
