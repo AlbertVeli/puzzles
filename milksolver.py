@@ -3,25 +3,25 @@
 from z3 import *
 
 # Key has three numbers, call them k1, k2, k3
-
-k1 = Int('k1')
-k2 = Int('k2')
-k3 = Int('k3')
+k1, k2, k3 = Ints('k1 k2 k3')
 
 s = Solver()
 
-# Numbers are between 0 and 9
-s.add(k1 >= 0, k1 <= 9)
-s.add(k2 >= 0, k2 <= 9)
-s.add(k3 >= 0, k3 <= 9)
+# Key numbers are in the range 0-9
+s.add([k >= 0 for k in [k1, k2, k3]])
+s.add([k <= 9 for k in [k1, k2, k3]])
 
-# One correct digit is in the correct position
-# The other two digits are not in the key at all
+# a or b or c is in the correct position while
+# the other two are not in the key at all
 def one_right_rightplace(a, b, c):
     s.add(Or(
+        # a correct in right place
         And(k1 == a, k2 != a, k2 != b, k2 != c, k3 != a, k3 != b, k3 != c),
+        # b correct in right place
         And(k1 != a, k1 != b, k1 != c, k2 == b, k3 != a, k3 != b, k3 != c),
-        And(k1 != a, k1 != b, k1 != c, k2 != a, k2 != b, k2 != c, k3 == c)))
+        # c correct in right place
+        And(k1 != a, k1 != b, k1 != c, k2 != a, k2 != b, k2 != c, k3 == c)
+    ))
 
 # One correct digit is in the wrong position
 # The other two digits are not in the key
