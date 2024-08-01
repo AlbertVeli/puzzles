@@ -8,8 +8,8 @@ k1, k2, k3 = Ints('k1 k2 k3')
 s = Solver()
 
 # Key numbers are in the range 0-9
-s.add([k >= 0 for k in [k1, k2, k3]])
-s.add([k <= 9 for k in [k1, k2, k3]])
+for k in (k1, k2, k3):
+    s.add(k >= 0, k <= 9)
 
 # a or b or c is in the correct position while
 # the other two are not in the key at all
